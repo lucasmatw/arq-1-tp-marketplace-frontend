@@ -1,0 +1,31 @@
+{
+  "generator-ngx-rocket": {
+    "version": "10.0.0",
+    "props": {
+      "location": "path",
+      "strict": true,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "usePrefix": true,
+      "appName": "arq1-tp-marketplace-frontend",
+      "target": ["web"],
+      "ui": "material",
+      "layout": "simple",
+      "features": ["pwa", "auth", "lazy", "e2e"],
+      "languages": ["en-US", "es-ES"],
+      "tools": ["prettier", "hads", "compodoc"],
+      "utility": ["lodash", "ramda", "moment"],
+      "deploy": "none",
+      "projectName": "arq-1-tp-marketplace-frontend",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": [],
+      "pwa": true,
+      "auth": true,
+      "lazy": true,
+      "e2e": true,
+      "angulartics": false
+    }
+  }
+}
