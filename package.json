@@ -17,7 +17,7 @@
     "write:env": "ngx-scripts env npm_package_version",
     "prettier": "prettier --write \"./src/**/*.{ts,js,html,scss}\"",
     "prettier:check": "prettier --list-different \"./src/**/*.{ts,js,html,scss}\"",
-    "postinstall": "ng build --aot -prod",
+    "heroku-postbuild": "ng build --aot --configuration=production",
     "generate": "ng generate"
   },
   "dependencies": {
