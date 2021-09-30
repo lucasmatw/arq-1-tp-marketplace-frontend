@@ -14,6 +14,11 @@ const proxyConfig = [
     changeOrigin: true,
     secure: false,
   },
+  {
+    context: '/product',
+    target: 'http://localhost:8080',
+    secure: false,
+  },
 ];
 
 /*
