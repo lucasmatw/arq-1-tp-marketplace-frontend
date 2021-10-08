@@ -4,8 +4,11 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 
+const product_uri = 'http://localhost:8080/products';
+
 const routes = {
-  product: (c: ProductContext) => `http://localhost:8080/products/${c.id}`,
+  product: (c: ProductContext) => `${product_uri}/${c.id}`,
+  products: () => `${product_uri}`,
 };
 
 export interface ProductContext {
@@ -31,5 +34,13 @@ export class ProductsService {
 
   getProduct(context: ProductContext): Observable<Product> {
     return this.httpClient.get<Product>(routes.product(context));
+  }
+
+  listProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(routes.products());
+  }
+
+  saveProduct(product: Product): Observable<bigint> {
+    return this.httpClient.post<bigint>(routes.products(), product);
   }
 }

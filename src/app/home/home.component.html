@@ -5,16 +5,16 @@
     </p>
     <mat-card-content>
       <mat-card-title translate>Hello world !</mat-card-title>
-      <mat-card-title>Hello world !</mat-card-title>
       <mat-card-subtitle>
         <app-loader [isLoading]="isLoading" [size]="1.5"></app-loader>
         <q [hidden]="isLoading">{{ quote }}</q>
       </mat-card-subtitle>
 
       <mat-card-content>
-        MAS CONTENT
         <app-hello> </app-hello>
       </mat-card-content>
+
+      <a routerLink="/products" routerLinkActive="active">Products</a>
     </mat-card-content>
   </mat-card>
 </div>

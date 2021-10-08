@@ -1,0 +1,48 @@
+<p>products works!</p>
+
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Index</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.category }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<mat-list role="list" *ngFor="let product of products">
+  <mat-list-item role="listitem">{{ product.name }}</mat-list-item>
+</mat-list>
+
+<div class="example-container">
+  <div class="form-container">
+    <form [formGroup]="productForm" (submit)="saveProduct()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Name </mat-label>
+        <input matInput formControlName="name" required />
+        <mat-error *ngIf="productForm.controls.name.touched && productForm.controls.name.invalid">
+          <span *ngIf="productForm.controls.name.errors">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Description </mat-label>
+        <input matInput formControlName="description" required />
+        <mat-error *ngIf="productForm.controls.description.touched && productForm.controls.description.invalid">
+          <span *ngIf="productForm.controls.description.errors">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Category </mat-label>
+        <input matInput formControlName="category" required />
+        <mat-error *ngIf="productForm.controls.category.touched && productForm.controls.category.invalid">
+          <span *ngIf="productForm.controls.category.errors">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </form>
+  </div>
+</div>

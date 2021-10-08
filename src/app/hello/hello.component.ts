@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '@app/auth';
-import { Product, ProductContext, ProductsService } from '@app/hello/products.service';
+import { Product, ProductContext, ProductsService } from '@app/products/products.service';
 
 @Component({
   selector: 'app-hello',
