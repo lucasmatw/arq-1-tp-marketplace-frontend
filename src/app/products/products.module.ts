@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@app/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { MaterialModule } from '@app/material.module';
     MatListModule,
     ReactiveFormsModule,
     MaterialModule,
+    FlexLayoutModule,
   ],
   declarations: [ProductsComponent],
 })

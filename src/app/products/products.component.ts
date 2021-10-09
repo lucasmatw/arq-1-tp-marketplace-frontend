@@ -5,6 +5,7 @@ import { Logger, untilDestroyed } from '@shared';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { BigInteger } from '@angular/compiler/src/i18n/big_integer';
 
 const log = new Logger('Products');
 
@@ -15,9 +16,11 @@ const log = new Logger('Products');
 })
 @UntilDestroy()
 export class ProductsComponent implements OnInit {
-  products: Product[] = [{ name: 'hola', category: 'alo', description: 'eee', id: 'e' }];
-  product: Product = { name: 'hola', category: 'alo', description: 'eee', id: 'e' };
+  products: Product[] = [];
+  product: Product = { name: '', category: '', description: '', id: '', price: 0 };
   productForm!: FormGroup;
+
+  categories: string[] = ['ELECTRICAL_APPLIANCE', 'FASHION', 'TECHNOLOGY'];
 
   constructor(
     private productService: ProductsService,
@@ -33,6 +36,7 @@ export class ProductsComponent implements OnInit {
       name: [null, Validators.required],
       description: [null, Validators.required],
       category: [null, Validators.required],
+      price: [null, Validators.required],
     });
   }
 
