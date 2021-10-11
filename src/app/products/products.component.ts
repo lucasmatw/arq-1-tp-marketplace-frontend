@@ -5,7 +5,7 @@ import { Logger, untilDestroyed } from '@shared';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { BigInteger } from '@angular/compiler/src/i18n/big_integer';
+import { CredentialsService } from '@app/auth';
 
 const log = new Logger('Products');
 
@@ -17,7 +17,7 @@ const log = new Logger('Products');
 @UntilDestroy()
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
-  product: Product = { name: '', category: '', description: '', id: '', price: 0 };
+  product: Product | undefined;
   productForm!: FormGroup;
 
   categories: string[] = ['ELECTRICAL_APPLIANCE', 'FASHION', 'TECHNOLOGY'];
@@ -26,7 +26,8 @@ export class ProductsComponent implements OnInit {
     private productService: ProductsService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private credentialsService: CredentialsService
   ) {
     this.listProducts();
   }
@@ -50,9 +51,13 @@ export class ProductsComponent implements OnInit {
   }
 
   saveProduct() {
-    const product = this.productForm.value;
-    const save$ = this.productService.saveProduct(product);
+    log.debug('saveProduct saveProduct saveProduct');
 
+    const product = this.productForm.value;
+
+    product.seller = this.getAuthenticatedSeller();
+    log.debug('SAVINGGGGG');
+    const save$ = this.productService.saveProduct(product);
     save$
       .pipe(
         finalize(() => {
@@ -69,5 +74,14 @@ export class ProductsComponent implements OnInit {
           log.debug(`Save error: ${error}`);
         }
       );
+  }
+
+  private getAuthenticatedSeller(): string {
+    const cred = this.credentialsService.credentials;
+    if (!this.credentialsService.isAuthenticated() || cred == null) {
+      log.error('Unauthorized user');
+      throw new Error('Unauthorized user');
+    }
+    return cred.username;
   }
 }
