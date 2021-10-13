@@ -8,8 +8,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '@shared';
 import { MaterialModule } from '@app/material.module';
 import { AuthenticationService, CredentialsService } from '@app/auth';
-import { MockAuthenticationService } from '@app/auth/authentication.service.mock';
-import { MockCredentialsService } from '@app/auth/credentials.service.mock';
 import { I18nModule } from '@app/i18n';
 import { LoginComponent } from './login.component';
 

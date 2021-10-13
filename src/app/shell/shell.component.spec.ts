@@ -6,8 +6,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 
 import { AuthenticationService, CredentialsService } from '@app/auth';
-import { MockAuthenticationService } from '@app/auth/authentication.service.mock';
-import { MockCredentialsService } from '@app/auth/credentials.service.mock';
 
 import { I18nModule } from '@app/i18n';
 import { ShellComponent } from './shell.component';
@@ -29,8 +27,8 @@ describe('ShellComponent', () => {
           RouterTestingModule,
         ],
         providers: [
-          { provide: AuthenticationService, useClass: MockAuthenticationService },
-          { provide: CredentialsService, useClass: MockCredentialsService },
+          { provide: AuthenticationService, useClass: AuthenticationService },
+          { provide: CredentialsService, useClass: CredentialsService },
         ],
         declarations: [HeaderComponent, ShellComponent],
       }).compileComponents();

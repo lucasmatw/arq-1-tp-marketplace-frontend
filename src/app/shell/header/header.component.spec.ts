@@ -4,8 +4,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { MaterialModule } from '@app/material.module';
 import { AuthenticationService, CredentialsService } from '@app/auth';
-import { MockAuthenticationService } from '@app/auth/authentication.service.mock';
-import { MockCredentialsService } from '@app/auth/credentials.service.mock';
 import { I18nModule } from '@app/i18n';
 import { HeaderComponent } from './header.component';
 
@@ -19,8 +17,8 @@ describe('HeaderComponent', () => {
         imports: [RouterTestingModule, MaterialModule, TranslateModule.forRoot(), I18nModule],
         declarations: [HeaderComponent],
         providers: [
-          { provide: AuthenticationService, useClass: MockAuthenticationService },
-          { provide: CredentialsService, useClass: MockCredentialsService },
+          { provide: AuthenticationService, useClass: AuthenticationService },
+          { provide: CredentialsService, useClass: CredentialsService },
         ],
       }).compileComponents();
     })
