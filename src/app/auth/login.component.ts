@@ -120,6 +120,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       name: ['', Validators.required],
       lastName: ['', Validators.required],
+      cuit: ['', Validators.required],
     });
   }
 }
