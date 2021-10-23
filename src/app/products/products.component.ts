@@ -34,10 +34,11 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
-      name: [null, Validators.required],
-      description: [null, Validators.required],
-      category: [null, Validators.required],
-      price: [null, Validators.required],
+      name: ['', [Validators.required, Validators.minLength(1)]],
+      description: ['', Validators.required],
+      category: ['', Validators.required],
+      price: ['', Validators.required],
+      stock: ['', Validators.required],
     });
   }
 
@@ -51,12 +52,14 @@ export class ProductsComponent implements OnInit {
   }
 
   saveProduct() {
-    log.debug('saveProduct saveProduct saveProduct');
+    if (!this.productForm.valid) {
+      throw new Error('Invalid product');
+    }
 
     const product = this.productForm.value;
 
     product.seller = this.getAuthenticatedSeller();
-    log.debug('SAVINGGGGG');
+
     const save$ = this.productService.saveProduct(product);
     save$
       .pipe(
@@ -67,7 +70,6 @@ export class ProductsComponent implements OnInit {
       )
       .subscribe(
         (productId) => {
-          log.debug('PRODUCT! ' + productId);
           this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
         (error) => {

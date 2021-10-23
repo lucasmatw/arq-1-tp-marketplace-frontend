@@ -22,6 +22,7 @@ export interface Product {
   category: string;
   price: number;
   seller: string;
+  stock: number;
 }
 
 /**
