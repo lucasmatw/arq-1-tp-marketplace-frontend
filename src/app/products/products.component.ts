@@ -34,6 +34,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
+      id: [null],
       name: ['', [Validators.required, Validators.minLength(1)]],
       description: ['', Validators.required],
       category: ['', Validators.required],
@@ -59,6 +60,7 @@ export class ProductsComponent implements OnInit {
     const product = this.productForm.value;
 
     product.seller = this.getAuthenticatedSeller();
+    product.status = 'ACTIVE';
 
     const save$ = this.productService.saveProduct(product);
     save$
@@ -76,6 +78,10 @@ export class ProductsComponent implements OnInit {
           log.debug(`Save error: ${error}`);
         }
       );
+  }
+
+  delete(productId: string) {
+    this.productService.deleteProduct({ id: productId });
   }
 
   private getAuthenticatedSeller(): string {

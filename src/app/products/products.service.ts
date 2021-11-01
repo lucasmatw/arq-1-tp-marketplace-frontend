@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 
-const product_uri = 'http://localhost:8080/products';
+const product_uri = 'http://sleepy-earth-09239.herokuapp.com/products';
 
 const routes = {
   product: (c: ProductContext) => `${product_uri}/${c.id}`,
@@ -23,6 +23,7 @@ export interface Product {
   price: number;
   seller: string;
   stock: number;
+  status: string;
 }
 
 /**
@@ -45,5 +46,13 @@ export class ProductsService {
 
   saveProduct(product: Product): Observable<bigint> {
     return this.httpClient.post<bigint>(routes.products(), product);
+  }
+
+  deleteProduct(context: ProductContext): Observable<boolean> {
+    return this.httpClient.delete(routes.product(context)).pipe(
+      map(() => {
+        return true;
+      })
+    );
   }
 }

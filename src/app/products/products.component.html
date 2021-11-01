@@ -72,8 +72,14 @@
             <span *ngIf="productForm.controls.stock.errors" translate>This field is mandatory.</span>
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" translate>Save</button>
+
+        <div *ngIf="!productForm.controls.id.value">
+          <button mat-raised-button color="primary" type="submit" translate>Save</button>
+        </div>
       </form>
+      <div *ngIf="productForm.controls.id.value">
+        <button mat-raised-button color="warn" (click)="delete(productForm.controls.id.value)" translate>Delete</button>
+      </div>
     </mat-card>
   </div>
 </div>
