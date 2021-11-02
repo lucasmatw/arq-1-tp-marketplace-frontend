@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 
-const product_uri = 'http://sleepy-earth-09239.herokuapp.com/products';
+const product_uri = '/products';
 
 const routes = {
   product: (c: ProductContext) => `${product_uri}/${c.id}`,

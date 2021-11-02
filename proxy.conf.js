@@ -10,18 +10,18 @@ const proxyConfig = [
   {
     context: '/api',
     pathRewrite: { '^/api': '' },
-    target: 'http://sleepy-earth-09239.herokuapp.com/products',
+    target: 'http://sleepy-earth-09239.herokuapp.com',
     changeOrigin: true,
     secure: false,
   },
   {
-    context: '/products',
+    context: 'api/products',
     target: 'http://sleepy-earth-09239.herokuapp.com/products',
     secure: false,
   },
   {
-    context: '/user',
-    target: 'http://sleepy-earth-09239.herokuapp.com/products',
+    context: 'api/user',
+    target: 'http://sleepy-earth-09239.herokuapp.com/user',
     secure: false,
   },
 ];

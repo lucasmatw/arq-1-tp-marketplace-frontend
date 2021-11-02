@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Credentials, CredentialsService } from './credentials.service';
 import { map } from 'rxjs/operators';
+
 export interface User {
   id: string;
   name: string;
@@ -23,7 +24,6 @@ export interface RegisterContext {
   mail: string;
 }
 
-
 /**
  * Provides a base for authentication workflow.
  * The login/logout methods should be replaced with proper implementation.
@@ -32,7 +32,7 @@ export interface RegisterContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService,private httpClient: HttpClient) {}
+  constructor(private credentialsService: CredentialsService, private httpClient: HttpClient) {}
 
   /**
    * Authenticates the user.
@@ -42,61 +42,66 @@ export class AuthenticationService {
   login(context: LoginContext): Observable<Credentials> {
     let credentials = JSON.stringify(context);
 
-  return this.httpClient.post("/user/login", credentials, {
-    headers: new HttpHeaders({
-      "Content-Type": "application/json"
-    })
-  }).pipe(
-    map(response => {
-      let token = (<any>response).token;
-      const data = {
-        username: context.email,
-        token: token
-      };
-      this.credentialsService.setCredentials(data, context.remember);
-      return data;
-    })
-  );
+    return this.httpClient
+      .post('/user/login', credentials, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(
+        map((response) => {
+          let token = (<any>response).token;
+          const data = {
+            username: context.email,
+            token: token,
+          };
+          this.credentialsService.setCredentials(data, context.remember);
+          return data;
+        })
+      );
   }
-
 
   forgetPassword(context: LoginContext): Observable<Credentials> {
     let credentials = JSON.stringify(context);
 
-  return this.httpClient.post("/user/forgetPassword", credentials, {
-    headers: new HttpHeaders({
-      "Content-Type": "application/json"
-    })
-  }).pipe(
-    map(response => {
-      let token = (<any>response).token;
-      const data = {
-        username: context.email,
-        token: token
-      };
-      return data;
-    })
-  );
+    return this.httpClient
+      .post('/user/forgetPassword', credentials, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(
+        map((response) => {
+          let token = (<any>response).token;
+          const data = {
+            username: context.email,
+            token: token,
+          };
+          return data;
+        })
+      );
   }
 
   register(context: RegisterContext): Observable<Credentials> {
     let credentials = JSON.stringify(context);
 
-  return this.httpClient.post("/user/register", credentials, {
-    headers: new HttpHeaders({
-      "Content-Type": "application/json"
-    })
-  }).pipe(
-    map(response => {
-      let token = (<any>response).token;
-      const data = {
-        username: context.mail,
-        token: token
-      };
-      this.credentialsService.setCredentials(data, true);
-      return data;
-    })
-  );
+    return this.httpClient
+      .post('/user/register', credentials, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(
+        map((response) => {
+          let token = (<any>response).token;
+          const data = {
+            username: context.mail,
+            token: token,
+          };
+          this.credentialsService.setCredentials(data, true);
+          return data;
+        })
+      );
   }
 
   /**
