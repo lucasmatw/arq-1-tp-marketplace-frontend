@@ -13,16 +13,21 @@ const proxyConfig = [
     target: 'http://sleepy-earth-09239.herokuapp.com',
     changeOrigin: true,
     secure: false,
+    logLevel: 'debug',
   },
   {
     context: 'api/products',
+    pathRewrite: { '^/api': '' },
     target: 'http://sleepy-earth-09239.herokuapp.com/products',
     secure: false,
+    logLevel: 'debug',
   },
   {
     context: 'api/user',
+    pathRewrite: { '^/api': '' },
     target: 'http://sleepy-earth-09239.herokuapp.com/user',
     secure: false,
+    logLevel: 'debug',
   },
 ];
 
