@@ -9,7 +9,7 @@ import { env } from './.env';
 export const environment = {
   production: true,
   version: env.npm_package_version,
-  serverUrl: 'http://sleepy-earth-09239.herokuapp.com',
+  serverUrl: 'https://sleepy-earth-09239.herokuapp.com',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US', 'es-ES'],
 };
