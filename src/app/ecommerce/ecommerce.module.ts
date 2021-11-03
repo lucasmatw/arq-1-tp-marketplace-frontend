@@ -3,14 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import {MatDividerModule} from '@angular/material/divider';
 import { SharedModule } from '@shared';
 import { MaterialModule } from '@app/material.module';
 import { I18nModule } from '@app/i18n';
-import { AuthRoutingModule } from './auth-routing.module';
-import { LoginComponent } from './login.component';
-import { ChangePasswordComponent } from './change-password.component';
-
+import { EcommerceComponent } from './ecommerce.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,9 +17,8 @@ import { ChangePasswordComponent } from './change-password.component';
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
-    I18nModule,
-    AuthRoutingModule,
+    I18nModule,FontAwesomeModule
   ],
-  declarations: [LoginComponent,ChangePasswordComponent],
+  declarations: [EcommerceComponent],
 })
-export class AuthModule {}
+export class EcommerceModule {}

@@ -15,6 +15,12 @@ export interface ProductContext {
   id: string;
 }
 
+
+export interface ProductSearchContext {
+  data: string;
+}
+
+
 export interface Product {
   id: string;
   name: string;
@@ -40,8 +46,12 @@ export class ProductsService {
     return this.httpClient.get<Product>(routes.product(context));
   }
 
-  listProducts(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(routes.products());
+  listProducts(seller:String): Observable<Product[]> {
+    return this.httpClient.get<Product[]>( '/products' + '?' + 'userSeller='+seller, {responseType:'json'});
+  }
+  searchProducts(text: String): Observable<Product[]> {
+    return this.httpClient.get<Product[]>( '/products/search' + '?' + 'name='+text, {responseType:'json'});
+
   }
 
   saveProduct(product: Product): Observable<bigint> {

@@ -7,7 +7,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { environment } from '@env/environment';
 import { RouteReusableStrategy, ApiPrefixInterceptor, ErrorHandlerInterceptor, SharedModule } from '@shared';
 import { AuthModule } from '@app/auth';
@@ -16,9 +16,11 @@ import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from '@app/products/products.module';
+import { EcommerceModule } from '@app/ecommerce/ecommerce.module';
 
 @NgModule({
   imports: [
+    FontAwesomeModule,
     BrowserModule,
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
@@ -32,6 +34,7 @@ import { ProductsModule } from '@app/products/products.module';
     HomeModule,
     AuthModule,
     ProductsModule,
+    EcommerceModule,
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

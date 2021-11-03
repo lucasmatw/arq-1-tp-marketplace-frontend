@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@app/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
+    FontAwesomeModule
   ],
   declarations: [ProductsComponent],
 })

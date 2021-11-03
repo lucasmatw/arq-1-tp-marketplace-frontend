@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { CredentialsService } from '@app/auth';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const log = new Logger('Products');
 
@@ -19,6 +20,8 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   product: Product | undefined;
   productForm!: FormGroup;
+  displayedColumns: string[] = ['id','name', 'description', 'category', 'price', 'stock', 'seller','status','delete'];
+  faShoppingCart = faShoppingCart;
 
   categories: string[] = ['ELECTRICAL_APPLIANCE', 'FASHION', 'TECHNOLOGY'];
 
@@ -45,12 +48,13 @@ export class ProductsComponent implements OnInit {
 
   listProducts() {
     this.productService
-      .listProducts()
+      .listProducts(this.getAuthenticatedSeller())
       // clone the data object, using its known Config shape
       .subscribe((data: Product[]) => {
         this.products = data;
       });
   }
+
 
   saveProduct() {
     if (!this.productForm.valid) {
@@ -83,6 +87,7 @@ export class ProductsComponent implements OnInit {
   delete(productId: string) {
     this.productService.deleteProduct({ id: productId });
   }
+
 
   private getAuthenticatedSeller(): string {
     const cred = this.credentialsService.credentials;

@@ -1,7 +1,7 @@
 {
     "APP_NAME": "arq1-tp-marketplace-frontend",
     "About": "Acerca de",
-    "Hello world !": "¡Hola Mundo!",
+    "Welcome": "Bienvenide",
     "Home": "Inicio",
     "Logged in as": "Conectado como",
     "Login": "Iniciar sesión",
@@ -21,5 +21,9 @@
     "Name": "Nombre",
     "Description": "Descripcion",
     "Category": "Categoría",
-    "Save": "Guardar"
+    "Save": "Guardar",
+    "Price": "Precio",
+    "Seller": "Vendedor",
+    "Buy": "Comprar",
+    "Products": "Mis Productos"
 }

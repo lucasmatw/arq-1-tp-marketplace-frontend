@@ -18,6 +18,11 @@ export interface LoginContext {
   password: string;
   remember?: boolean;
 }
+export interface ChangePasswordContext {
+  email: string;
+  password: string;
+  newPassword: string;
+}
 export interface RegisterContext {
   name: string;
   lastName: string;
@@ -77,6 +82,29 @@ export class AuthenticationService {
             username: context.email,
             token: token,
           };
+          return data;
+        })
+      );
+  }
+
+  changePassword(context: ChangePasswordContext): Observable<Credentials> {
+    let credentials = JSON.stringify(context);
+
+    return this.httpClient
+      .post('/user/changePassword', credentials, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(
+        map((response) => {
+          let token = (<any>response).token;
+          const data = {
+            username: context.email,
+            token: token,
+          };
+          this.credentialsService.setCredentials(data, true);
+
           return data;
         })
       );
