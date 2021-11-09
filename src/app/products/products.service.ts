@@ -47,10 +47,10 @@ export class ProductsService {
   }
 
   listProducts(seller:String): Observable<Product[]> {
-    return this.httpClient.get<Product[]>( '/products' + '?' + 'userSeller='+seller, {responseType:'json'});
+    return this.httpClient.get<Product[]>( '/products' + '?' + 'seller='+seller, {responseType:'json'});
   }
-  searchProducts(text: String): Observable<Product[]> {
-    return this.httpClient.get<Product[]>( '/products/search' + '?' + 'name='+text, {responseType:'json'});
+  searchProducts(name: String,category: String,min: String,max: String): Observable<Product[]> {
+    return this.httpClient.get<Product[]>( '/products/search' + '?' + 'name='+name+ '&' + 'category='+category+ '&' + 'min_price='+min+ '&' + 'max_price='+max, {responseType:'json'});
 
   }
 
@@ -59,10 +59,9 @@ export class ProductsService {
   }
 
   deleteProduct(context: ProductContext): Observable<boolean> {
-    return this.httpClient.delete(routes.product(context)).pipe(
-      map(() => {
-        return true;
-      })
-    );
+    console.log("aaa")
+
+    return this.httpClient.delete<boolean>( '/products/' + context.id  );
+
   }
 }

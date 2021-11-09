@@ -1,7 +1,10 @@
 <div fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1.5rem" class="mat-typography">
 
     <div style="padding-top: 50px;">
-        <input matInput (change)="listProducts($any($event.target).value)" placeholder="Search">
+        <input matInput id="name" (change)="listProducts()" [placeholder]="'Name' | translate">
+        <input matInput id="category" (change)="listProducts()" [placeholder]="'Category' | translate">
+        <input matInput id="min" (change)="listProducts()" [placeholder]="'Min Price' | translate">
+        <input matInput id="max" (change)="listProducts()" [placeholder]="'Max Price' | translate">
     </div>
     <table style="width: 70%;" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 

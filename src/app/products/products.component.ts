@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   product: Product | undefined;
   productForm!: FormGroup;
-  displayedColumns: string[] = ['id','name', 'description', 'category', 'price', 'stock', 'seller','status','delete'];
+  displayedColumns: string[] = ['id','name', 'description', 'category', 'price', 'stock', 'seller','status','delete','edit'];
   faShoppingCart = faShoppingCart;
 
   categories: string[] = ['ELECTRICAL_APPLIANCE', 'FASHION', 'TECHNOLOGY'];
@@ -83,11 +83,46 @@ export class ProductsComponent implements OnInit {
         }
       );
   }
-
+  edit(productId: string) {
+    this.productService.getProduct({ id: productId })
+    .pipe(
+      finalize(() => {
+        log.debug('finalize!');
+      }),
+      untilDestroyed(this)
+    )
+    .subscribe(
+      (productId : Product) => {
+          console.log(productId)
+          this.productForm.controls['id'].setValue(productId.id);
+          this.productForm.controls['name'].setValue(productId.name);
+          this.productForm.controls['description'].setValue(productId.description);
+          this.productForm.controls['category'].setValue(productId.category);
+          this.productForm.controls['price'].setValue(productId.price);
+          this.productForm.controls['stock'].setValue(productId.stock);
+                },
+      (error) => {
+        log.debug(`Save error: ${error}`);
+      }
+    );
+}
   delete(productId: string) {
-    this.productService.deleteProduct({ id: productId });
-  }
-
+    this.productService.deleteProduct({ id: productId })
+    .pipe(
+      finalize(() => {
+        log.debug('finalize!');
+      }),
+      untilDestroyed(this)
+    )
+    .subscribe(
+      (productId) => {
+        this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
+      },
+      (error) => {
+        log.debug(`Save error: ${error}`);
+      }
+    );
+}
 
   private getAuthenticatedSeller(): string {
     const cred = this.credentialsService.credentials;

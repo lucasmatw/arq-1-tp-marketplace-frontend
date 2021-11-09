@@ -25,5 +25,9 @@
     "Price": "Precio",
     "Seller": "Vendedor",
     "Buy": "Comprar",
-    "Products": "Mis Productos"
+    "Products": "Mis Productos",
+    "Min Price": "Precio minimo",
+    "Max Price": "Precio maximo",
+    "Change Password": "Cambiar contraseña"
+
 }

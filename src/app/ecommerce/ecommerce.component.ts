@@ -39,11 +39,20 @@ export class EcommerceComponent implements OnInit {
 
   }
   ngOnInit() {
-
+this.listProducts()
   }
-  listProducts(text:String) {
+  listProducts() {
     this.productService
-      .searchProducts(text)
+      .searchProducts(
+
+        (<HTMLInputElement>document.getElementById("name")).value,
+        (<HTMLInputElement>document.getElementById("category")).value,
+        (<HTMLInputElement>document.getElementById("min")).value,
+        (<HTMLInputElement>document.getElementById("max")).value
+
+
+
+        )
       // clone the data object, using its known Config shape
       .subscribe(data => {
         //this.products = data;
