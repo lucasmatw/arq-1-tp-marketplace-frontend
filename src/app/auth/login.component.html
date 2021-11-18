@@ -100,11 +100,11 @@
                   type="text"
                   matInput
                   formControlName="last_name"
-                  autocomplete="lastname"
+                  autocomplete="last_name"
                   [placeholder]="'Last Name' | translate"
                   required
                 />
-                <mat-error *ngIf="registerForm.controls.last_name.invalid && registerForm.controls.lastName.touched">
+                <mat-error *ngIf="registerForm.controls.last_name.invalid && registerForm.controls.last_name.touched">
                   <span translate>Last Name is required</span>
                 </mat-error>
               </mat-form-field>
