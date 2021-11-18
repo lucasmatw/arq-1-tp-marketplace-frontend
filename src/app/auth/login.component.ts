@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   login() {
-    console.log("a");
+    console.log('a');
     this.isLoading = true;
     const login$ = this.authenticationService.login(this.loginForm.value);
     login$
@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  resetPassword(){
-    console.log("registrar");
+  resetPassword() {
+    console.log('registrar');
     this.isLoading = true;
     const login$ = this.authenticationService.forgetPassword(this.loginForm.value);
     login$
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
         (credentials) => {
           log.debug(`${credentials.username} successfully logged in`);
           //this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
-          alert("La registraacion se realizo con exito. La password la recibe por mail.")
+          alert('La registraacion se realizo con exito. La password la recibe por mail.');
         },
         (error) => {
           log.debug(`Register error: ${error}`);
@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
       );
   }
   register() {
-    console.log("registrar");
+    console.log('registrar');
     this.isLoading = true;
     const login$ = this.authenticationService.register(this.registerForm.value);
     login$
@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
           log.debug(`${credentials.username} successfully logged in`);
           //this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
           this.registerForm.reset();
-          alert("La registraacion se realizo con exito.\n La password la recibe por mail.")
+          alert('La registraacion se realizo con exito.\n La password la recibe por mail.');
         },
         (error) => {
           log.debug(`Register error: ${error}`);
@@ -119,7 +119,7 @@ export class LoginComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       email: ['', Validators.required],
       name: ['', Validators.required],
-      lastName: ['', Validators.required],
+      last_name: ['', Validators.required],
       cuit: ['', Validators.required],
     });
   }

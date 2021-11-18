@@ -27,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService
   ) {
-this.createChangePasswordForm();
+    this.createChangePasswordForm();
   }
 
   ngOnInit() {}
@@ -51,16 +51,13 @@ this.createChangePasswordForm();
           this.error = error;
         }
       );
-
-
   }
   private createChangePasswordForm() {
     this.changePasswordForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
-      newpassword: ['', Validators.required],
+      new_password: ['', Validators.required],
       remember: true,
     });
   }
-
 }

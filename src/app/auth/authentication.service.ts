@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 export interface User {
   id: string;
   name: string;
-  lastName: string;
+  last_name: string;
   email: string;
   password: string;
 }
@@ -21,11 +21,11 @@ export interface LoginContext {
 export interface ChangePasswordContext {
   email: string;
   password: string;
-  newPassword: string;
+  new_password: string;
 }
 export interface RegisterContext {
   name: string;
-  lastName: string;
+  last_name: string;
   mail: string;
 }
 
