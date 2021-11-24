@@ -1,61 +1,88 @@
 <div fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1.5rem" class="mat-typography">
+    <div [hidden]="isNotDisplayedProducts">
+        <div style="padding-top: 50px;">
+            <input matInput id="name" (change)="listProducts()" [placeholder]="'Name' | translate">
+            <input matInput id="category" (change)="listProducts()" [placeholder]="'Category' | translate">
+            <input matInput id="min" (change)="listProducts()" [placeholder]="'Min Price' | translate">
+            <input matInput id="max" (change)="listProducts()" [placeholder]="'Max Price' | translate">
+        </div>
+        <br>
+        <table style="width: 100%;" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <div style="padding-top: 50px;">
-        <input matInput id="name" (change)="listProducts()" [placeholder]="'Name' | translate">
-        <input matInput id="category" (change)="listProducts()" [placeholder]="'Category' | translate">
-        <input matInput id="min" (change)="listProducts()" [placeholder]="'Min Price' | translate">
-        <input matInput id="max" (change)="listProducts()" [placeholder]="'Max Price' | translate">
-    </div>
-    <table style="width: 70%;" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        <!--- Note that these columns can be defined in any order.
+            <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> No. </th>
-            <td mat-cell *matCellDef="let element" [ngStyle]="{'display': 'none'}"> {{element.id}} </td>
-        </ng-container>
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef translate>Name</th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-        <!-- Name Column -->
-        <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef translate> Description </th>
-            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-        </ng-container>
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> No. </th>
+                <td mat-cell *matCellDef="let element" [ngStyle]="{'display': 'none'}"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef translate>Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef translate> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef translate> Category </th>
-            <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-        </ng-container>
-        <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef translate> Price </th>
-            <td mat-cell *matCellDef="let element"> ${{element.price}} </td>
-        </ng-container>
-        <ng-container matColumnDef="stock">
-            <th mat-header-cell *matHeaderCellDef translate> Stock </th>
-            <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
-        </ng-container>
-        <ng-container matColumnDef="seller">
-            <th mat-header-cell *matHeaderCellDef translate> Seller </th>
-            <td mat-cell *matCellDef="let element"> {{element.seller}} </td>
-        </ng-container>
-        <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef translate> Buy </th>
-            <td mat-cell *matCellDef="let element">
-                <fa-icon [icon]="faShoppingCart"></fa-icon>
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> status </th>
-            <td mat-cell *matCellDef="let element" [ngStyle]="{'display': 'none'}"> {{element.status}} </td>
-        </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef translate> Category </th>
+                <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+            </ng-container>
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef translate> Price </th>
+                <td mat-cell *matCellDef="let element"> ${{element.price}} </td>
+            </ng-container>
+            <ng-container matColumnDef="stock">
+                <th mat-header-cell *matHeaderCellDef translate> Stock </th>
+                <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
+            </ng-container>
+            <ng-container matColumnDef="seller">
+                <th mat-header-cell *matHeaderCellDef translate> Seller </th>
+                <td mat-cell *matCellDef="let element"> {{element.seller}} </td>
+            </ng-container>
+            <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef translate> Buy </th>
+                <td mat-cell *matCellDef="let element">
+                    <button (click)="prePurchase(element)"><fa-icon [icon]="faShoppingCart"></fa-icon></button>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> status </th>
+                <td mat-cell *matCellDef="let element" [ngStyle]="{'display': 'none'}"> {{element.status}} </td>
+            </ng-container>
 
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <br>
+    <br>
+    <div [hidden]="isNotDisplayedPurchase" class="mat-elevation-z8" style="padding: 10px;background: #fff;">
+        <h1>Ya falta poco para terminar tu compra</h1>
+        <br>
+        <br>
+        <br>
+        <div>
+            Medio de Pago: <select><option>Efectivo</option></select>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div>
+            Medio de Entrega: <select><option>Retiro en tienda</option></select>
+        </div>
+        <br>
+        <br>
+        <br> Cantidad: <input type="text" id="quantity" style="width: 100px;">
+        <br>
+        <br>
+        <div>
+            <button (click)="purchase()" translate>Purchase</button>
+        </div>
+    </div>
 </div>

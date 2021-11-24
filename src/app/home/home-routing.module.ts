@@ -7,6 +7,8 @@ import { Shell } from '@app/shell/shell.service';
 import { ChangePasswordComponent } from '../auth/change-password.component';
 import { EcommerceComponent } from '../ecommerce/ecommerce.component';
 import { ProductsComponent } from '@app/products/products.component';
+import { ProductsBatchComponent } from '@app/productsbatch/productsbatch.component';
+import { ShoppingComponent } from '@app/shopping/shopping.component';
 
 const routes: Routes = [
   Shell.childRoutes([
@@ -15,6 +17,8 @@ const routes: Routes = [
     { path: 'changePassword', component: ChangePasswordComponent, data: { title: marker('ChangePassword') }},
     { path: 'products', component: ProductsComponent, data: { title: marker('products') }},
     { path: 'ecommerce', component: EcommerceComponent, data: { title: marker('ecommerce') }},
+    { path: 'productsbatch', component: ProductsBatchComponent, data: { title: marker('productsbatch') }},
+    { path: 'shopping', component: ShoppingComponent, data: { title: marker('shopping') }},
   ]),
 ];
 

@@ -1,0 +1,17 @@
+<div fxFill fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1.5rem" class="mat-typography">
+
+
+    <div class="product-container" fxLayout="row" fxLayoutAlign="center">
+        <mat-card fxFlex="100%" fxFlex.sm="66%" fxFlex.md="50%">
+            <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+                <div>
+                    <input type="file" name="profile" (change)="onFileSelect($event)" />
+                </div>
+                <div>
+                    <button type="submit" translate>Upload</button>
+                </div>
+            </form>
+
+        </mat-card>
+    </div>
+</div>
