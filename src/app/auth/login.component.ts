@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   login() {
-    console.log('a');
     this.isLoading = true;
     const login$ = this.authenticationService.login(this.loginForm.value);
     login$
@@ -72,9 +71,9 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         (credentials) => {
-          log.debug(`${credentials.username} successfully logged in`);
-          //this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
-          alert('La registraacion se realizo con exito. La password la recibe por mail.');
+          this.loginForm.reset();
+
+          alert('El reseteo se realizo con exito. La password la recibe por mail.');
         },
         (error) => {
           log.debug(`Register error: ${error}`);

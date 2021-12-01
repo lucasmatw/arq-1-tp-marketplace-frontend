@@ -4,6 +4,7 @@ export interface Credentials {
   // Customize received credentials here
   username: string;
   token: string;
+  id:string;
 }
 
 const credentialsKey = 'credentials';
@@ -40,7 +41,9 @@ export class CredentialsService {
   get credentials(): Credentials | null {
     return this._credentials;
   }
-
+  getId(){
+    return this.credentials?.id;
+  }
   /**
    * Sets the user credentials.
    * The credentials may be persisted across sessions by setting the `remember` parameter to true.

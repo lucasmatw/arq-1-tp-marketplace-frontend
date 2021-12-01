@@ -8,6 +8,8 @@ import { environment } from '@env/environment';
 import { Logger, UntilDestroy, untilDestroyed } from '@shared';
 import { HttpClient } from '@angular/common/http';
 import { CredentialsService } from '@app/auth';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { MoneyAccountService } from './moneyAccount.service';
 
 const log = new Logger('EcommerceComponent');
 
@@ -47,7 +49,8 @@ export class EcommerceComponent implements OnInit {
     private formBuilder: FormBuilder,
     private productService: ProductsService,
     private http: HttpClient,
-    private credentialsService: CredentialsService
+    private credentialsService: CredentialsService,
+    private moneyAccountService:MoneyAccountService
 
 
   ) {
@@ -67,6 +70,7 @@ this.listProducts()
         this.isNotDisplayedPurchase=true
         this.isNotDisplayedProducts = false
         this.listProducts()
+        this.moneyAccountService.emitirEvento()
         alert("compra realizada exitosamente")
       });
     }else{

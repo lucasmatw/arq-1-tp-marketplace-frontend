@@ -14,10 +14,11 @@ import { UntilDestroy, untilDestroyed } from '@shared';
 export class ShellComponent implements OnInit {
   @ViewChild('sidenav', { static: false }) sidenav!: MatSidenav;
 
-  constructor(private media: MediaObserver) {}
+  constructor(private media: MediaObserver   ) {}
 
   ngOnInit() {
     // Automatically close side menu on screens > sm breakpoint
+
     this.media
       .asObservable()
       .pipe(

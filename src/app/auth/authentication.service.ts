@@ -59,6 +59,7 @@ export class AuthenticationService {
           const data = {
             username: context.email,
             token: token,
+            id:<string>response,
           };
           this.credentialsService.setCredentials(data, context.remember);
           return data;
@@ -66,7 +67,7 @@ export class AuthenticationService {
       );
   }
 
-  forgetPassword(context: LoginContext): Observable<Credentials> {
+  forgetPassword(context: LoginContext): Observable<any> {
     let credentials = JSON.stringify(context);
 
     return this.httpClient
@@ -87,7 +88,7 @@ export class AuthenticationService {
       );
   }
 
-  changePassword(context: ChangePasswordContext): Observable<Credentials> {
+  changePassword(context: ChangePasswordContext): Observable<any> {
     let credentials = JSON.stringify(context);
 
     return this.httpClient
@@ -103,14 +104,14 @@ export class AuthenticationService {
             username: context.email,
             token: token,
           };
-          this.credentialsService.setCredentials(data, true);
+          //this.credentialsService.setCredentials(data, true);
 
           return data;
         })
       );
   }
 
-  register(context: RegisterContext): Observable<Credentials> {
+  register(context: RegisterContext): Observable<any> {
     let credentials = JSON.stringify(context);
 
     return this.httpClient
@@ -126,7 +127,7 @@ export class AuthenticationService {
             username: context.mail,
             token: token,
           };
-          this.credentialsService.setCredentials(data, true);
+          //this.credentialsService.setCredentials(data, true);
           return data;
         })
       );
